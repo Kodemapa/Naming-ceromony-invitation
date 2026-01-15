@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naming Ceremony Invitation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS STYLES --- */
+        :root {
+            --primary-blue: #87CEEB;
+            --soft-white: #ffffff;
+            --accent-gold: #FFD700;
+            --text-dark: #333333;
+            --text-soft: #555555;
+            --card-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--primary-blue);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Pacifico', cursive;
+            font-weight: 400;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card {
+            background: var(--soft-white);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: var(--card-shadow);
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .btn-highlight {
+            background: var(--soft-white);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            color: var(--primary-blue);
+            display: inline-block;
+            margin-top: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* --- SECTIONS --- */
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-image-frame {
+            width: 480px;
+            height: 480px;
+            border-radius: 10%;
+            border: 8px solid white;
+            overflow: hidden;
+            margin: 20px auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .hero-image-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .sub-heading {
+            color: white;
+            font-size: 1.5rem;
+            margin-top: 10px;
+        }
+
+        /* Message Section */
+        .message-section {
+            padding: 40px 20px;
+        }
+
+        .funny-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: var(--text-soft);
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .photo-card {
+            background: white;
+            padding: 10px;
+            border-radius: 15px;
+            transform: rotate(-2deg);
+            transition: transform 0.3s;
+        }
+
+        .photo-card:nth-child(even) {
+            transform: rotate(2deg);
+        }
+
+        .photo-card:hover {
+            transform: scale(1.05) rotate(0);
+            z-index: 10;
+        }
+
+        .photo-card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Countdown Section */
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .time-box {
+            background: white;
+            width: 80px;
+            height: 90px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .time-val {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .time-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: #888;
+        }
+
+        /* Location Section */
+        .map-frame {
+            width: 100%;
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 5px solid white;
+            margin-top: 20px;
+        }
+
+        /* Decorative Clouds/SVGs */
+        .decoration {
+            position: absolute;
+            opacity: 0.8;
+            z-index: -1;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero-image-frame { width: 220px; height: 220px; }
+            .photo-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <svg class="decoration floating" style="top: 20px; left: 10px; width: 60px;" viewBox="0 0 24 24" fill="white"><path d="M18.5,12c0-1.7-1.1-3.2-2.6-3.8c0.1-0.5,0.1-1,0.1-1.5c0-3.2-2.3-5.8-5.3-6.5c-0.3-0.1-0.7-0.1-1-0.1C6.6,0.1,4,2.7,4,5.9c0,0.6,0.1,1.1,0.3,1.6C2.5,8.2,1.2,10,1.2,12c0,2.5,1.8,4.5,4.2,4.9V17h13.2v-0.1C20.7,16.5,22.5,14.5,18.5,12z"/></svg>
+        
+        <h1 class="floating">You're Invited<br>to my Naming Ceremony</h1>
+        
+        <div class="hero-image-frame">
+            <img src="./images/surfing.jpg" alt="Baby Main Photo">
+        </div>
+
+        <div class="sub-heading" style="font-family: 'Pacifico', cursive;">Save the Date</div>
+        <div class="card" style="padding: 10px 30px; transform: rotate(-1deg);">
+            <h2 style="color: var(--primary-blue); margin: 0;">January 24th, 2026</h2>
+        </div>
+        <p style="color: white; font-weight: bold; font-size: 1.2rem;">11:30 AM Onwards</p>
+    </section>
+
+    <section class="container">
+        <div class="card">
+            <h3>Help me get a REAL name!</h3>
+            <p class="funny-text">
+                I'm tired of being called "Cutie Pie," "Little Munchkin," and "Laddu" every single day! 😅 <br><br>
+                Please join my parents as they finally give me an official name.
+            </p>
+        </div>
+
+        <div class="photo-grid">
+            <div class="photo-card">
+                <img src="./images/japan.png" alt="Baby in Suit">
+            </div>
+            <div class="photo-card">
+                <img src="./images/japaness2.png" alt="Baby in Overalls">
+            </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <h2 style="color: white; font-size: 2.5rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">Countdown to the Big Day!</h2>
+        
+        <div class="countdown-container" id="countdown">
+            <div class="time-box">
+                <span class="time-val" id="days">0</span>
+                <span class="time-label">Days</span>
+            </div>
+            <div class="time-box">
+                <span class="time-val" id="hours">0</span>
+                <span class="time-label">Hours</span>
+            </div>
+            <div class="time-box">
+                <span class="time-val" id="minutes">0</span>
+                <span class="time-label">Mins</span>
+            </div>
+            <div class="time-box">
+                <span class="time-val" id="seconds">0</span>
+                <span class="time-label">Secs</span>
+            </div>
+        </div>
+        
+        <div class="photo-card" style="max-width: 300px; margin: 0 auto; transform: rotate(1deg);">
+            <img src="./images/bug.png" alt="Baby on Green">
+        </div>
+    </section>
+
+    <section class="container" style="padding-bottom: 60px;">
+        <div class="card">
+            <h3>Join us at</h3>
+            <h2 style="color: var(--primary-blue); font-size: 2rem; margin: 10px 0;">VV Destination</h2>
+            <p style="font-weight: bold; color: #666;">Ballary, Karnataka - 583101</p>
+            
+            <div class="map-frame">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3845.895393436034!2d76.9216!3d15.1394!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDA4JzIxLjgiTiA3NsKwNTUnMTcuOCJF!5e0!3m2!1sen!2sin!4v1625638429548!5m2!1sen!2sin" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+            <br>
+            <p style="font-family: 'Pacifico', cursive; font-size: 1.5rem; color: var(--primary-blue);">Can't wait to see you there! 🎉</p>
+        </div>
+    </section>
+
+    <script>
+        function updateCountdown() {
+            const eventDate = new Date("2026-01-24T11:30:00").getTime();
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            if (distance > 0) {
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("days").innerText = days;
+                document.getElementById("hours").innerText = hours;
+                document.getElementById("minutes").innerText = minutes;
+                document.getElementById("seconds").innerText = seconds;
+            } else {
+                document.getElementById("countdown").innerHTML = "<h3>The Ceremony has started!</h3>";
+            }
+        }
+
+        // Run immediately and then every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
